@@ -18,7 +18,10 @@ Bonus if time:
 
 # Project
 
-TODO
+## Run Command
+Use nodemon to run on dev:
+        
+        nodemon -e js,ts -w './src/*'  --exec npm run-script buildmon
 
 ## Initialized with NPX 
 https://www.npmjs.com/package/init-typescript-app 
