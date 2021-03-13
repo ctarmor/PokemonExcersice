@@ -3,7 +3,6 @@ import { requestHandler } from './requestHandler';
 const http = require('http');
 const url = require('url');
 
-
 const hostname = '127.0.0.1';
 const port = 3000;
 
@@ -16,14 +15,21 @@ const server = http.createServer(async (req : any, res: any) => {
 
     if (query.names) {
         const names = query.names.split(',');
-        await requestHandler(names);
-        res.end('requestHandler(names)');
+
+        console.log();
+        console.log('REQUESTING: ', names);
+
+        const stats = await requestHandler(names);
+
+        console.log('RESPONSE: ', stats);
+        
+        res.end(JSON.stringify(stats));
         return;
     }
 
     // response
     res.statusCode = 400;
-    res.end('Invalid PPokeon Names');
+    res.end('Invalid pokemon parameters');
 });
 
 // listen to incoming requests

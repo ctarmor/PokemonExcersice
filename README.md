@@ -13,10 +13,30 @@ Bonus if time:
 
 4. Allow us to pass multiple names as a query parameter to decide which pokemon we want to get the above info on at runtime (versus predetermined)
     
-        Example: http://localhost:3000/pokemon?names=kakuna,pikachu,ratata
+        Example: http://localhost:3000/pokemon?names=kakuna,pikachu,ditto,bulbasaur
 
 
-# Project
+# Test 
+
+Request: 
+
+http://localhost:3000/pokemon?names=pikachu
+
+http://localhost:3000/pokemon?names=kakuna,pikachu,ditto,bulbasaur
+
+
+Response:
+
+        {
+                pokemons: [
+                        { name: 'kakuna', weight: 100, height: 6 },
+                        { name: 'pikachu', weight: 60, height: 4 },
+                        { name: 'ditto', weight: 40, height: 3 },
+                        { name: 'bulbasaur', weight: 69, height: 7 }
+                ],
+                weight: { mean: 67.25, median: 69, mode: 40 },
+                height: { mean: 5, median: 6, mode: 3 }
+        }
 
 ## Run Command
 Use nodemon to run on dev:
@@ -24,6 +44,8 @@ Use nodemon to run on dev:
         nodemon -e js,ts -w './src/*'  --exec npm run-script buildmon
 
 ## Initialized with NPX 
+I used npx package to start the new project. 
+
 https://www.npmjs.com/package/init-typescript-app 
 
 <pre>

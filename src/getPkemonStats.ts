@@ -1,18 +1,18 @@
 import fetch from 'node-fetch';
 import { Pokemon } from './IPokemon';
 
-export async function getPokemonStats(names: string[]) {
+export async function getPokemonStats(names: string[]) : Promise<Pokemon[]> {
     // 
     // Make concurretn async calls, but wait for all to return
     //
 
     // https://pokeapi.co/api/v2/pokemon/pikachu/
 
-    let retData = {};
+    let retData: Pokemon[] = [];
     await Promise.all(
         names.map(n => fetch('https://pokeapi.co/api/v2/pokemon/' + n + '/'))
     ).then(function (responses) {
-        // Get a JSON object from each of the responses
+        // Stream each JOSN object from the api response
         return Promise.all(responses.map(function (response) {
             return response.json();
         }));
@@ -22,7 +22,6 @@ export async function getPokemonStats(names: string[]) {
         console.log('ERROR: ', error);
     });
 
-    console.log('retData: ', retData);
     return retData;
 }
 
